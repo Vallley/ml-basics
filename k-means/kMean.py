@@ -9,9 +9,9 @@ from tqdm.notebook import tqdm
 #from skimage.io import imread
 
 #%matplotlib inline
-
+'''
 # Зафиксируем случайность, чтобы у нас получались одинаковые результаты.
-'''np.random.seed(seed=63)
+np.random.seed(seed=63)
 
 p1 = np.random.normal(loc=0, scale=1, size=(50, 2))
 p2 = np.random.normal(loc=5, scale=2, size=(50, 2))
@@ -75,7 +75,7 @@ def center_update(centroids, x):
     return new_centroids, cent_history
 
 
-def kmeans_fit_predict(x, k=8, max_iter=100, tol=0.001, low=0.0, high=1.0):
+def kmeans_fit_predict(x, k=8, max_iter=100, tol=0.0001, low=0.0, high=1.0):
     centroids = np.random.uniform(low=low, high=high, size=(k, x.shape[1]))
     x = np.array(x)
     labels, centroids_list = kmeans_predict2(x, centroids)
@@ -99,10 +99,9 @@ def kmeans_fit_predict(x, k=8, max_iter=100, tol=0.001, low=0.0, high=1.0):
             x_with_lables = np.hstack((x, labels.reshape(-1, 1)))
     return centroids, x_with_lables, center_history
 
+'''
 
-# установим число кластеров k равное трем
-# не генерируем центр кластера выше максимального значения из Х - ограничим это используя high
-'''clusters_mnist, labels_mnist, cent_history = kmeans_fit_predict(X, k=3, low=0.0, high=np.max(X))
+clusters_mnist, labels_mnist, cent_history = kmeans_fit_predict(X, k=3, low=0.0, high=np.max(X))
 
 STEPS = len(cent_history) - 1  # количество шагов обновления центров
 
@@ -115,8 +114,6 @@ for i in range(STEPS):
     plt.plot(cent_history[i][:, 0], cent_history[i][:, 1], 'rX')
     plt.legend(loc=0)
 
+
 '''
-
-
-
 
